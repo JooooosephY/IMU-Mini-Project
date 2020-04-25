@@ -26,7 +26,6 @@ function setup() {
 
 function draw() {
     // background(0);
-    // noStroke();
 
     if (!data) {
         return;
@@ -34,7 +33,10 @@ function draw() {
 
     let data1 = data.euler[0];
     let data2 = data.euler[1]; // -30,30
+    // console.log(data2);
+    
     let data3 = data.euler[2]; // -70, -120
+    // console.log(data3);
     
     for (let i = 0; i < particles.length; i ++){
         let p = particles[i];
@@ -44,25 +46,6 @@ function draw() {
         p.checkEdge();
         p.display();
     }
-
-    // angleMode(DEGREES);
-    // textAlign(CENTER);
-
-    // let data1 = data.euler[0];
-    
-    // fill('red');
-    // dart(100, 100, data1);
-    // text('pitch', 150, 200);
-
-    // let data2 = map(data.euler[1], 0.5, -20.5, -90, 0);
-    // console.log(data2);
-    // fill('blue');
-    // dart(250, 100, data2);
-    // text('yaw', 300, 200);
-
-    // fill('green');
-    // dart(400, 100, data.euler[2]);
-    // text('roll', 450, 200);
 }
 
 function dart(x, y, angle) {
@@ -94,7 +77,7 @@ class Particle{
         this.pos.add(this.vel);
         this.angle = this.vel.heading() + PI / 2;
         this.r = map(data1, -180, 180, 0, 255);
-        this.g = map(data2, -30, 30, 0, 255);
+        this.g = map(data2, -30, 20, 0, 255);
         this.b = map(data3, -120, -70, 0, 255);
     }
 
@@ -112,7 +95,6 @@ class Particle{
 
     display(){
         push();
-        
         translate(this.pos.x, this.pos.y);
         rotate(this.angle);
         noStroke();
